@@ -2,17 +2,17 @@
 $(document).ready(function () {
 var animals = ["Dog", "Cat", "Tiger", "Monkey", "Sloth", "Giraffe", "Bird", "Donkey", "Raccoon", "Panda"];
 
-function alertAnimalName() {
-
-  };
+function alertAnimalName(){  };
 
 //need a function to render buttons. Homework suggests using a loop to go through the array
 function renderButtons (){
 
   //avoid repeat buttons  
 $("#animal-Buttons").empty();
+
 //create loop
-for (var i=0; i<animals.length; i++){
+for (var i=0; i<animals.length; i++)
+{
     //generate button
     var ab= $("<button>");
     //add class to buttons
@@ -22,14 +22,65 @@ for (var i=0; i<animals.length; i++){
     //generate text for button from array
     ab.text(animals[i]);
     //append buttons
-    $("#animal-Buttons").append(ab);
-    }
-};
+    $("#animal-Buttons").append(ab);  
+
+
+}
+    $("#animal-Buttons button").on("click", function() 
+    
+    {
+    
+    $("#images").empty();
+    
+
+    // creates a variable for the image search
+    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=FT79lMtvzGCwg7NZYGS8Qd1bkn19VQ51&limit=10&q=" + $(this).data("name");
+    
+   
+    // gets image from the api
+    $.ajax({
+    url: queryURL,
+    method: "GET"})
+   
+
+     //calls out 
+     .then(function(response) 
+     
+      {
+              //variable for the image
+              var imageUrl = response.data.url[0];
+              console.log(response.data);
+   
+              //create image element to drop animal images into
+              var animalImage = $("<img>");
+   
+              //replace image src with url for gif
+              animalImage.attr("src", imageUrl);
+        
+              //alt image description
+              animalImage.attr("alt", "Animal image");
+   
+              //append image of animal selected
+              $("#images").append(animalImage);
+
+              //animalImage.addClass(gif);
+             // animalImage.attr("src", results[i].images.original_still.url);
+             // animalImage.attr("data-still", results[i].images.original_still.url);
+             // animalImage.attr("data-animate", results[i].images.original.url);
+             // animalImage.attr("data-state", "still");
+             // movieImg.attr("class", "gif");
+
+      }) //end of .then function
+    
+     }) //end of on click function
+
+}; //end of render buttons
+
 
 // This function handles events where one button is clicked
    $("#add-animal").on("click", function(event) {
-       console.log(test);
    event.preventDefault();
+
 
         // This line grabs the input from the textbox
    var ani = $("#animal-input").val().trim();
@@ -39,41 +90,22 @@ for (var i=0; i<animals.length; i++){
 
         // Calling renderButtons which handles the processing of our movie array
      renderButtons();
-    });
-//click function for animal class buttons
-      $(document).on("click", ".animal", alertAnimalName);
+     return false;
+    }); //end of click event add animal button
 
-        // Calling the renderButtons function to display the intial buttons
+
+    //click function for animal class buttons
+     $(document).on("click", ".animal", alertAnimalName);
+
+     // Calling the renderButtons function to display the intial buttons
       renderButtons(); 
     
+      
+    
 
-      $("#animal-Buttons").on("click", function() {
 
-       // creates a variable for the image search
-      var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=FT79lMtvzGCwg7NZYGS8Qd1bkn19VQ51&tag=" + ;
-  
-   // gets image from the api
-       $.ajax({
-     url: queryURL,
-    method: "GET"
-      })
-  
-    //calls out 
-       .then(function(response) {
-  
-          //variable for the image
-       var imageUrl = response.data.image_original_url;
-  
-            //create image element to drop animal images into
-          var animalImage = $("<img>");
-  
-            //replace image src with url for gif
-        animalImage.attr("src", imageUrl);
-        //alt image description
-        animalImage.attr("alt", "Animal image");
-  
-            //append image of animal selected
-          $("#images").append(animalImage);
-       })
-    })
-    })
+
+
+
+
+    }) //document ready don't touch
