@@ -1,3 +1,44 @@
 body {
     background-image: url("../images/background.jpg");
+    margin: auto
+}
+
+img{
+    height: 200px;
+    width: 200px;
+   
+}
+
+#jumbotron{
+    background-color:darkgreen; 
+    height: 200px;
+    font-family: 'Architects Daughter', cursive;
+    text-align: center;
+    font-weight: bolder;
+    color: white;
+}
+
+.animal{
+    background-color: darkgreen;
+    margin: 5px;
+    border-color:darkgreen;
+    color: white;
+    height: 40px;
+    font-family: 'Architects Daughter', cursive;
+}
+
+#label{
+    background-color: darkgreen;
+    height: 25px;
+    font-family: 'Architects Daughter', cursive;
+    color: white
+}
+
+#add-animal{
+    background-color: darkgreen;
+    margin: 5px;
+    border-color: black;
+    color: white;
+    height: 40px;
+    font-family: 'Architects Daughter', cursive;
 }

@@ -1,3 +1,4 @@
+var imageUrl, responseData;
 //array for topic, my topic is also animals (how creative)
 $(document).ready(function () {
 var animals = ["Dog", "Cat", "Tiger", "Monkey", "Sloth", "Giraffe", "Bird", "Donkey", "Raccoon", "Panda"];
@@ -48,7 +49,12 @@ for (var i=0; i<animals.length; i++)
      
       {
               //variable for the image
-              var imageUrl = response.data.url[0];
+// response.data.length
+              //loop begin 1-10
+            //   var responseData = response.data;
+              for(j=0; j<response.data.length; j++){
+
+               imageUrl = response.data[j].images.fixed_width_still.url;
               console.log(response.data);
    
               //create image element to drop animal images into
@@ -62,13 +68,9 @@ for (var i=0; i<animals.length; i++)
    
               //append image of animal selected
               $("#images").append(animalImage);
-
-              //animalImage.addClass(gif);
-             // animalImage.attr("src", results[i].images.original_still.url);
-             // animalImage.attr("data-still", results[i].images.original_still.url);
-             // animalImage.attr("data-animate", results[i].images.original.url);
-             // animalImage.attr("data-state", "still");
-             // movieImg.attr("class", "gif");
+// loop end
+  }
+             
 
       }) //end of .then function
     
